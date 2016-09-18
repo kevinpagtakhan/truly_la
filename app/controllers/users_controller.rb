@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   def index
+    if current_user.role != 'admin'
+      redirect_to current_user
+    end
+
     @users = User.where(:status => true)
   end
 

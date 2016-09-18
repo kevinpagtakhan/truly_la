@@ -19,12 +19,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     session[:user_role] = nil
-    redirect_to sm_login_path
+    redirect_to login_path
   end
 
-  private
-
-  # def session_params
-  #   params.require(:session).permit(:username, :password)
-  # end
 end
