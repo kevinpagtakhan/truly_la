@@ -1,5 +1,21 @@
 class SessionsController < ApplicationController
 
+  def customer_new
+    redirect_to root_path if current_user
+  end
+
+  def customer_create
+    @user = Customer.find_by_username(params[:session][:username])
+
+    if @user && @user.authenticate(params[:session][:password])
+      session[:user_id] = @user.id
+      session[:user_role] = 'customer'
+      redirect_to @user
+    else
+      redirect_to login_path
+    end
+  end
+
   def sm_new
     redirect_to root_path if current_user
   end

@@ -5,8 +5,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def current_user
-    if session[:user_role] == 'manager'
+    role = session[:user_role]
+
+    if role == 'manager'
       @current_user ||= StoreManager.find(session[:user_id]) if session[:user_id]
+    elsif role == 'customer'
+      @current_user ||= Customer.find(session[:user_id]) if session[:user_id]
     end
   end
 

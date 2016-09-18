@@ -1,0 +1,16 @@
+<h1>Customers#new</h1>
+<p>Find me in app/views/customers/new.html.erb</p>
+
+<%= form_for @customer do |f| %>
+  <%= f.label :username, "Username" %>
+  <%= f.text_field :username %> <br>
+  <%= f.label :first_name, "First Name" %>
+  <%= f.text_field :first_name %> <br>
+  <%= f.label :last_name, "Last Name" %>
+  <%= f.text_field :last_name %> <br>
+  <%= f.label :password, "Password" %>
+  <%= f.password_field :password %> <br>
+  <%= f.label :password_confirmation, "Password Confirmation" %>
+  <%= f.password_field :password_confirmation %> <br>
+  <%= f.submit "Sign up" %>
+<% end %>
