@@ -1,0 +1,9 @@
+<h1>StoreManagers#index</h1>
+<p>Find me in app/views/store_managers/index.html.erb</p>
+
+<h2>Store Managers</h2>
+<ul>
+  <% for sm in @sm_list do %>
+    <li> <%= sm.first_name %> <%= sm.last_name %> (<%= link_to "@" + sm.username, sm %>) </li>
+  <% end %>
+</ul>
