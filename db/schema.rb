@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160918062912) do
+ActiveRecord::Schema.define(version: 20160918075118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "customers", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "username"
+    t.string   "email"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "shipping_street"
@@ -25,30 +26,11 @@ ActiveRecord::Schema.define(version: 20160918062912) do
     t.string   "shipping_city"
     t.string   "shipping_state"
     t.string   "shipping_zip_code"
+    t.string   "role"
     t.string   "password_digest"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.string   "email"
-  end
-
-  create_table "store_managers", force: :cascade do |t|
-    t.string   "username"
-    t.string   "password_digest"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "email"
-  end
-
-  create_table "suppliers", force: :cascade do |t|
-    t.string   "username"
-    t.string   "email"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "staus",             default: true
   end
 
 end

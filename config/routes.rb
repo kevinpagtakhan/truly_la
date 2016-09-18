@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
   root 'store_managers#index'
 
-  get '/sm_login' => 'sessions#sm_new'
-  post '/sm_login' => 'sessions#sm_create'
-  get '/login' => 'sessions#customer_new'
-  post '/login' => 'sessions#customer_create'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
-  resources :store_managers
-  resources :customers
+  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

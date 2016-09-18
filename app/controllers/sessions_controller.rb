@@ -1,34 +1,18 @@
 class SessionsController < ApplicationController
 
-  def customer_new
+  def new
     redirect_to root_path if current_user
   end
 
-  def customer_create
-    @user = Customer.find_by_username(params[:session][:username])
+  def create
+    @user = User.find_by_username(params[:session][:username])
 
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      session[:user_role] = 'customer'
+      session[:user_role] = @user.role
       redirect_to @user
     else
       redirect_to login_path
-    end
-  end
-
-  def sm_new
-    redirect_to root_path if current_user
-  end
-
-  def sm_create
-    @user = StoreManager.find_by_username(params[:session][:username])
-
-    if @user && @user.authenticate(params[:session][:password])
-      session[:user_id] = @user.id
-      session[:user_role] = 'manager'
-      redirect_to @user
-    else
-      redirect_to sm_login_path
     end
   end
 

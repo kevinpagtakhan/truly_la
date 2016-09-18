@@ -1,0 +1,14 @@
+<h1>Users#index</h1>
+<p>Find me in app/views/users/index.html.erb</p>
+
+<h2>Users</h2>
+
+  <% for user in @users do %>
+    <h4><%= user.username %></h4>
+    <ul>
+      <li><%= user.first_name %></li>
+      <li><%= user.last_name %></li>
+      <li><%= user.email %></li>
+      <li><%= user.role %></li>
+    </ul>
+  <% end %>

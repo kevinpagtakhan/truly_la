@@ -1,0 +1,32 @@
+<h1>Users#edit</h1>
+<p>Find me in app/views/users/edit.html.erb</p>
+
+<h2>Edit User</h2>
+
+<%= form_for @user do |f| %>
+  <h3>Profile</h1>
+  <%= f.label :username, "Username"%>
+  <%= f.text_field :username %> <br>
+  <%= f.label :email, "Email" %>
+  <%= f.text_field :email %> <br>
+  <%= f.label :first_name, "First Name" %>
+  <%= f.text_field :first_name %> <br>
+  <%= f.label :last_name, "Last Name" %>
+  <%= f.text_field :last_name %> <br>
+
+  <% if @user.role == 'customer' %>
+    <h4>Shipping Address</h4>
+    <%= f.label :shipping_street, "Address Line 1" %>
+    <%= f.text_field :shipping_street%> <br>
+    <%= f.label :shipping_street_2, "Address Line 2" %>
+    <%= f.text_field :shipping_street_2%> <br>
+    <%= f.label :shipping_city, "City" %>
+    <%= f.text_field :shipping_city%> <br>
+    <%= f.label :shipping_state, "State" %>
+    <%= f.text_field :shipping_state%> <br>
+    <%= f.label :shipping_zip_code, "Zip Code" %>
+    <%= f.text_field :shipping_zip_code %> <br>
+  <% end %>
+
+  <%= f.submit "Save" %>
+<% end %>
