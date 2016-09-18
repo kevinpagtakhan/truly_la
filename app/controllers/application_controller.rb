@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
     role = session[:user_role]
 
     if role == 'manager'
-      @current_user ||= StoreManager.find(session[:user_id]) if session[:user_id]
+      return @current_user ||= StoreManager.find(session[:user_id]) if session[:user_id]
     elsif role == 'customer'
-      @current_user ||= Customer.find(session[:user_id]) if session[:user_id]
+      return @current_user ||= Customer.find(session[:user_id]) if session[:user_id]
     end
   end
 
