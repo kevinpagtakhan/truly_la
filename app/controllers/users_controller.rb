@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    if current_user.role != 'admin'
+    if current_user.role < 3
       redirect_to current_user
     end
 
