@@ -17,7 +17,7 @@ class StoreManagersController < ApplicationController
     if @sm.save
       redirect_to @sm
     else
-      redirect_to new_store_manager
+      redirect_to new_store_manager_path
     end
   end
 
