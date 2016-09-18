@@ -8,7 +8,13 @@
 </head>
 <body>
 
-<%= yield %>
+  <% if current_user %>
+    Hello, <%= current_user.username %>
+  <% else %>
+    <%= "Login, please" %>
+  <% end %>
+
+  <%= yield %>
 
 </body>
 </html>

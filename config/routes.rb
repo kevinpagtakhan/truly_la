@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  root 'store_managers#index'
+
+  get '/sm_login' => 'sessions#sm_new'
+  post '/sm_login' => 'sessions#sm_create'
+  get '/logout' => 'sessions#destroy'
 
   resources :store_managers
 
