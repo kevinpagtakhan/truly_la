@@ -41,7 +41,7 @@ class StoreManagersController < ApplicationController
   private
 
   def sm_params
-    params.require(:store_manager).permit(:username, :first_name, :last_name, :password, :password_confirmation)
+    params.require(:store_manager).permit(:username, :email, :first_name, :last_name, :password, :password_confirmation)
   end
 
 end
