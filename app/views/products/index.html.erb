@@ -1,0 +1,14 @@
+<h1>Products#index</h1>
+<p>Find me in app/views/products/index.html.erb</p>
+
+<h2>Products</h2>
+
+<% for product in @products do %>
+    <h4> <%= product.name %> </h4>
+    <ul>
+      <li> <%= product.sku %> </li>
+      <li> <%= product.description %> </li>
+      <li> <%= product.regular_price %> </li>
+      <li> <%= product.user.username %> </li>
+    </ul>
+<% end %>

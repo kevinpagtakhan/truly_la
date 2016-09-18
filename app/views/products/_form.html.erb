@@ -1,0 +1,31 @@
+<%= form_for @product do |f| %>
+  <%= f.label :name%>
+  <%= f.text_field :name %> <br>
+  <%= f.label :sku %>
+  <%= f.text_field :sku %> <br>
+  <%= f.label :description %>
+  <%= f.text_area :description %> <br>
+  <%= f.label :inventory %>
+  <%= f.text_field :inventory %> <br>
+
+  <%= f.label :wholesale_price, "Wholesale Price" %>
+  <%= f.text_field :wholesale_price %> <br>
+  <%= f.label :regular_price, "Regular Price" %>
+  <%= f.text_field :regular_price %> <br>
+  <%= f.label :sale_price, "Sale Price" %>
+  <%= f.text_field :sale_price %> <br>
+
+  <%= f.label :height %>
+  <%= f.text_field :height %> <br>
+  <%= f.label :width %>
+  <%= f.text_field :width %> <br>
+  <%= f.label :depth %>
+  <%= f.text_field :depth %> <br>
+  <%= f.label :weight %>
+  <%= f.text_field :weight %> <br>
+
+  <%= f.label :user_id, "Supplier" %>
+  <%= f.text_field :user_id %> <br>
+
+  <%= f.submit  %>
+<% end %>
