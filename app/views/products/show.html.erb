@@ -8,3 +8,13 @@
   <li> <%= @product.regular_price %> </li>
   <li> <%= @product.user.username %> </li>
 </ul>
+
+<h5>Reviews </h5>
+
+<% for review in @product.reviews do %>
+<ul>
+  <li> <%= review.user.username %> </li>
+  <li> <%= review.stars %> </li>
+  <li> <%= review.content %> </li>
+</ul>
+<% end %>
