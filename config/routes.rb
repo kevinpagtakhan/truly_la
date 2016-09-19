@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  root 'store_managers#index'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
-  post '/add_to_card/:id' => 'products#add_to_cart', as: 'add_to_cart'
+  get '/cart' => 'cart#index'
+  post '/cart/:id' => 'cart#add_item', as: 'add_item'
+  delete '/cart/:id' => 'cart#delete_item', as: 'delete_item'
 
   resources :users
   resources :products do
