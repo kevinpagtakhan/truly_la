@@ -45,6 +45,12 @@ class ProductsController < ApplicationController
     end
   end
 
+  def add_to_cart
+    session[:cart] = [] unless session[:cart]
+    session[:cart].push(Product.find(params[:id]))
+    redirect_to products_path
+  end
+
   private
 
   def product_params

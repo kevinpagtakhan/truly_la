@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
+  post '/add_to_card/:id' => 'products#add_to_cart', as: 'add_to_cart'
+
   resources :users
   resources :products do
     resources :reviews
