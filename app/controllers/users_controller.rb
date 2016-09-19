@@ -17,9 +17,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.role = "customer"
+    @user.role = 1
     if @user.save
-      redirect_to @user
+      redirect_to login_path
     else
       redirect_to new_user_path
     end
