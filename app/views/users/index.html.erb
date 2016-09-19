@@ -10,5 +10,6 @@
       <li><%= user.last_name %></li>
       <li><%= user.email %></li>
       <li><%= user.role %></li>
+      <li> <%= link_to "View", user %> / <%= link_to "Edit", edit_user_path(user) %> </li>
     </ul>
   <% end %>
