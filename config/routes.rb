@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   post '/cart/:id' => 'cart#add_item', as: 'add_item'
   delete '/cart/:id' => 'cart#delete_item', as: 'delete_item'
 
-  resources :users
+  resources :users do
+    resources :orders
+  end
+
   resources :products do
     resources :reviews
   end

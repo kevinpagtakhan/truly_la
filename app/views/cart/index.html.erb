@@ -4,3 +4,5 @@
 <% for item in @cart do %>
   <%= link_to "Remove", delete_item_path(item[0].id), method: :delete %> <%= item[1] %> <%= item[0].name %> <%= item[0].regular_price %> <br>
 <% end %>
+
+<%= link_to "Checkout", new_user_order_path(current_user) %>

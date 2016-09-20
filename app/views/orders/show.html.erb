@@ -1,0 +1,14 @@
+<h1>Orders#show</h1>
+<p>Find me in app/views/orders/show.html.erb</p>
+
+<%= @order.id %>
+<% for product in @order.products do %>
+  <%= product.name %> <br>
+<% end %>
+
+<%= @order.user.username %><br>
+<%= @order.shipping_street %><br>
+<%= @order.shipping_street_2 %><br>
+<%= @order.shipping_city %><br>
+<%= @order.shipping_state %><br>
+<%= @order.shipping_zip_code %><br>
