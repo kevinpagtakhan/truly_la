@@ -11,6 +11,9 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       session[:user_role] = @user.role
 
+      session[:cart] = {} unless session[:cart]
+      session[:cart][current_user_id.to_s] = {} unless session[:cart][current_user_id.to_s]
+
       if session[:cart][current_user_id.to_s].empty?
         session[:cart][current_user_id.to_s] = session[:cart]["0"]
       else

@@ -1,14 +1,18 @@
 class UsersController < ApplicationController
+  before_filter :loggedin, except: [:new, :create]
+
   def index
-    if current_user.role < 3
-      redirect_to current_user
-    end
+    redirect_to user_path(current_user) unless admin
 
     @users = User.where(:status => true)
   end
 
   def show
-    @user = User.find(params[:id])
+    if (admin)
+      @user = User.find(params[:id])
+    else
+      @user = User.find(current_user)
+    end
   end
 
   def new
@@ -26,11 +30,19 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    if (admin)
+      @user = User.find(params[:id])
+    else
+      @user = User.find(current_user)
+    end
   end
 
   def update
-    @user = User.find(params[:id])
+    if (admin)
+      @user = User.find(params[:id])
+    else
+      @user = User.find(current_user)
+    end
 
     if @user.update(user_params)
       redirect_to @user
