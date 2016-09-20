@@ -1,10 +1,17 @@
 <h1>Orders#show</h1>
 <p>Find me in app/views/orders/show.html.erb</p>
 
-<%= @order.id %>
-<% for product in @order.products do %>
-  <%= product.name %> <br>
+<h2>Order #<%= @order.id %> <br></h2>
+<%= time_ago_in_words(@order.created_at) %> ago <br>
+
+<h2>Products</h2>
+<% for op in @order_products do %>
+  <%= op.quantity %>
+  <%= op.product.name %>
+  <%= op.selling_price %> <br>
 <% end %>
+
+<h2>Shipping Address</h2>
 
 <%= @order.user.username %><br>
 <%= @order.shipping_street %><br>

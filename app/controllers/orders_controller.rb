@@ -11,7 +11,8 @@ class OrdersController < ApplicationController
 
   def show
     if admin || current_user.id == params[:user_id].to_i
-      @order = Order.find(params[:id])
+      @order_products = OrderProduct.where(order_id: params[:id])
+      @order = @order_products.first.order
     else
       redirect_to user_orders_path(current_user)
     end
@@ -27,8 +28,10 @@ class OrdersController < ApplicationController
     session[:cart][current_user_id.to_s].each do |key,value|
       product = Product.find(key.to_i)
       @order.products << product
-      # @order.products.last.selling_price = product.regular_price
-      # @order.products.last.quantity = value
+      p "*******************"
+      @order.order_products.last.selling_price = product.regular_price
+      @order.order_products.last.quantity = value
+      p "*******************"
     end
 
     if @order.save

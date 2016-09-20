@@ -1,19 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'reviews/show'
-
-  get 'reviews/index'
-
-  get 'reviews/new'
-
-  get 'reviews/create'
-
-  get 'reviews/edit'
-
-  get 'reviews/update'
-
-  get 'reviews/destroy'
-
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
