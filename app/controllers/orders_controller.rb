@@ -30,6 +30,7 @@ class OrdersController < ApplicationController
     end
 
     if @order.save
+      session[:cart][current_user_id.to_s] = {}
       redirect_to user_order_path(current_user, @order)
     else
       redirect_to cart_path
