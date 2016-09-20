@@ -12,10 +12,20 @@
 
 <h5>Reviews </h5>
 
+<%= form_for [@product, @product.reviews.build] do |f| %>
+  <%= f.label :stars %>
+  <%= f.text_field :stars %><br>
+  <%= f.label :content %>
+  <%= f.text_field :content %><br>
+  <%= f.submit %>
+<% end %>
+
 <% for review in @product.reviews do %>
-<ul>
-  <li> <%= review.user.username %> </li>
-  <li> <%= review.stars %> </li>
-  <li> <%= review.content %> </li>
-</ul>
+  <% if review.user %>
+    <ul>
+      <li> <%= review.user.username %> </li>
+      <li> <%= review.stars %> </li>
+      <li> <%= review.content %> </li>
+    </ul>
+  <% end %>
 <% end %>
