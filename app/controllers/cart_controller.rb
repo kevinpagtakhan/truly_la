@@ -17,7 +17,7 @@ class CartController < ApplicationController
     session[:cart][user.to_s][params[:id].to_s] = 0 unless session[:cart][user.to_s][params[:id].to_s]
     session[:cart][user.to_s][params[:id].to_s] += 1
 
-    redirect_to products_path
+    redirect_to :back
   end
 
   def delete_item
