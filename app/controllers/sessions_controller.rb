@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
         session[:cart]["0"].each do |key, value|
           session[:cart][user.to_s][key] = 0 unless session[:cart][user.to_s][key]
-          session[:cart][user.to_s][key] += 1
+          session[:cart][user.to_s][key] += value
         end
 
       end
