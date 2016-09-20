@@ -3,6 +3,10 @@ class ProductsController < ApplicationController
     @products = Product.where(:status => true)
   end
 
+  def inventory
+    @products = Product.where(:status => true)
+  end
+
   def show
     @product = Product.find(params[:id])
   end
