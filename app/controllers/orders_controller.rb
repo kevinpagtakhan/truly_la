@@ -1,10 +1,18 @@
 class OrdersController < ApplicationController
   def index
-    @orders = Order.where(user_id: params[:user_id])
+    if admin
+      @orders = Order.all
+    elsif
+      @orders = Order.where(user_id: params[:user_id])
+    end
   end
 
   def show
-    @order = Order.find(params[:id])
+    if admin || current_user.id == params[:user_id].to_i
+      @order = Order.find(params[:id])
+    else
+      redirect_to user_orders_path(current_user)
+    end
   end
 
   def new
