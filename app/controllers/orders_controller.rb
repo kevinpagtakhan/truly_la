@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_filter :loggedin
+
   def index
     if admin
       @orders = Order.all
