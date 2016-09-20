@@ -10,6 +10,21 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
       session[:user_role] = @user.role
+
+      if session[:cart][current_user_id.to_s].empty?
+        session[:cart][current_user_id.to_s] = session[:cart]["0"]
+      else
+        user = current_user_id
+
+        session[:cart]["0"].each do |key, value|
+          session[:cart][user.to_s][key] = 0 unless session[:cart][user.to_s][key]
+          session[:cart][user.to_s][key] += 1
+        end
+
+      end
+
+      session[:cart]["0"] = {}
+
       redirect_to @user
     else
       redirect_to login_path
@@ -19,7 +34,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     session[:user_role] = nil
-    session[:cart] = nil
+    # session[:cart] = nil
     redirect_to login_path
   end
 
