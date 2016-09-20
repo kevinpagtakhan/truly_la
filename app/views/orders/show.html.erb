@@ -3,6 +3,8 @@
 
 <h2>Order #<%= @order.id %> <br></h2>
 <%= time_ago_in_words(@order.created_at) %> ago <br>
+<p> Payment status: <%= @order.payment_status %> </p>
+<p> Shipping status: <%= @order.shipment_status %> </p>
 
 <h2>Products</h2>
 <% for op in @order_products do %>

@@ -25,13 +25,15 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.user_id = current_user_id
+    @order.shipment_status = "pending"
+    @order.payment_status = "complete"
     session[:cart][current_user_id.to_s].each do |key,value|
       product = Product.find(key.to_i)
       @order.products << product
-      p "*******************"
+
       @order.order_products.last.selling_price = product.regular_price
       @order.order_products.last.quantity = value
-      p "*******************"
+
     end
 
     if @order.save
