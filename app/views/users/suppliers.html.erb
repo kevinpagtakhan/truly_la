@@ -1,0 +1,13 @@
+<h1>Users#suppliers</h1>
+<p>Find me in app/views/users/suppliers.html.erb</p>
+
+<% for supplier in @suppliers do %>
+  <h4><%= supplier.username %></h4>
+  <ul>
+    <li><%= supplier.first_name %></li>
+    <li><%= supplier.last_name %></li>
+    <li><%= supplier.email %></li>
+    <li><%= supplier.role %></li>
+    <li> <%= link_to "View", supplier %> </li>
+  </ul>
+<% end %>

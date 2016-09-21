@@ -7,6 +7,14 @@ class UsersController < ApplicationController
     @users = User.where(:status => true)
   end
 
+  def suppliers
+    @suppliers = User.where(:role => 2)
+  end
+
+  def supplier_show
+    @supplier = User.find(params[:id])
+  end
+
   def show
     if (admin)
       @user = User.find(params[:id])

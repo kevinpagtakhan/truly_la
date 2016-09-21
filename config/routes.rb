@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
   post '/orders/:id/shipped' => 'orders#shipped', as: 'ship_item'
 
+  get '/users/suppliers' => 'users#suppliers', as: 'suppliers'
+  get '/users/suppliers/:id' => 'users#suppliers_show', as: 'supplier'
+
   resources :users do
     resources :orders
   end

@@ -7,3 +7,9 @@
   <li><%= @user.email %></li>
   <li><%= @user.role %></li>
 </ul>
+
+<% if @user.role == 2 %>
+  <% for product in @user.products %>
+    <%= product.name %> <br>
+  <% end %>
+<% end %>
