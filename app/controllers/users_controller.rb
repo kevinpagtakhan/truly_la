@@ -8,10 +8,12 @@ class UsersController < ApplicationController
   end
 
   def suppliers
+    redirect_to user_path(current_user) unless admin
     @suppliers = User.where(:role => 2)
   end
 
   def supplier_show
+    redirect_to user_path(current_user) unless admin
     @supplier = User.find(params[:id])
   end
 
