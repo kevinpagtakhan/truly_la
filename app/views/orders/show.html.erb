@@ -22,7 +22,6 @@
 <%= @order.shipping_state %><br>
 <%= @order.shipping_zip_code %><br>
 
-<% if current_user.role == 3 && @order.shipment_status == 'pending' %>
-
+<% if current_user.role > 1 && ((@order.user.role != 3 )^ (@order.products.first.user == current_user)) && @order.shipment_status == 'pending' %>
   <%= link_to "Complete Shipment", ship_item_path(@order), method: :post %>
 <% end %>
