@@ -25,24 +25,56 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.user_id = current_user_id
-    @order.shipment_status = "pending"
-    @order.payment_status = "complete"
-    session[:cart][current_user_id.to_s].each do |key,value|
-      product = Product.find(key.to_i)
-      @order.products << product
+    if current_user_id < 3
+      @order = Order.new(order_params)
+      @order.user_id = current_user_id
 
-      @order.order_products.last.selling_price = product.regular_price
-      @order.order_products.last.quantity = value
+      @order.shipment_status = "pending"
+      @order.payment_status = "complete"
+      session[:cart][current_user_id.to_s].each do |key,value|
+        product = Product.find(key.to_i)
+        @order.products << product
 
-    end
+        @order.order_products.last.selling_price = product.regular_price
+        @order.order_products.last.quantity = value
+      end
 
-    if @order.save
-      session[:cart][current_user_id.to_s] = {}
-      redirect_to user_order_path(current_user, @order)
+      if @order.save
+        session[:cart][current_user_id.to_s] = {}
+        redirect_to user_order_path(current_user, @order)
+      else
+        redirect_to cart_path
+      end
     else
-      redirect_to cart_path
+      # separate cart into different groups depending on supplier
+      admin_cart = {}
+      session[:cart][current_user_id.to_s].each do |key,value|
+        supplier = Product.find(key.to_i).user.username
+        admin_cart[supplier] = {} unless admin_cart[supplier]
+        admin_cart[supplier][key] = value
+      end
+      # generate order from multiple carts
+      admin_cart.each do |key, value|
+        @order = Order.new(order_params)
+        @order.user_id = current_user_id
+
+        @order.shipment_status = "pending"
+        @order.payment_status = "complete"
+        
+        admin_cart[key].each do |k, v|
+          # add to order
+          product = Product.find(k.to_i)
+          @order.products << product
+
+          @order.order_products.last.selling_price = product.regular_price
+          @order.order_products.last.quantity = v
+          # save order
+          @order.save
+          p "*******************"
+        end
+      end
+      # session[:cart][current_user_id.to_s] = {}
+      # redirect_to
     end
   end
 
