@@ -3,13 +3,24 @@ class OrdersController < ApplicationController
 
   def index
     if admin && current_user_id == params[:user_id].to_i
-
-      @orders = Order.where.not(user_id: current_user_id)
-      @orders = Order.where(shipment_status: params[:shipment_status]) if params[:shipment_status]
+      if params[:shipment_status]
+        @orders = Order.where(shipment_status: params[:shipment_status])
+        @orders = @orders.select do |order|
+          order.user.role != 3
+        end
+      elsif params[:user] && params[:user] == "admin"
+        @orders = Order.where(user_id: current_user_id)
+      else
+        @orders = Order.where.not(user_id: current_user_id)
+      end
     elsif supplier
       @orders = Order.all
-      @orders = @orders.select do |order|
-        order.user.role == 3 && order.products.first.user.id == current_user_id
+      if params[:from] && params[:from] == "admin"
+        @orders = @orders.select do |order|
+          order.user.role == 3 && order.products.first.user.id == current_user_id
+        end
+      else
+        @orders = Order.where(user_id: current_user_id)
       end
     else
       @orders = Order.where(user_id: params[:user_id])
