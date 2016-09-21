@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    if current_user_id < 3
+    if current_user.role < 3
       @order = Order.new(order_params)
       @order.user_id = current_user_id
 
@@ -60,7 +60,6 @@ class OrdersController < ApplicationController
 
         @order.shipment_status = "pending"
         @order.payment_status = "complete"
-        
         admin_cart[key].each do |k, v|
           # add to order
           product = Product.find(k.to_i)
@@ -70,11 +69,11 @@ class OrdersController < ApplicationController
           @order.order_products.last.quantity = v
           # save order
           @order.save
-          p "*******************"
+          @order.order_products.last.save
         end
       end
-      # session[:cart][current_user_id.to_s] = {}
-      # redirect_to
+      session[:cart][current_user_id.to_s] = {}
+      redirect_to user_orders_path(current_user)
     end
   end
 
