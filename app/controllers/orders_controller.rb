@@ -75,7 +75,7 @@ class OrdersController < ApplicationController
         @order.user_id = current_user_id
 
         @order.shipment_status = "pending"
-        @order.payment_status = "complete"
+        @order.payment_status = "pending"
         admin_cart[key].each do |k, v|
           # add to order
           product = Product.find(k.to_i)
@@ -96,6 +96,14 @@ class OrdersController < ApplicationController
   def shipped
     @order = Order.find(params[:id])
     @order.shipment_status = "complete"
+    if @order.save
+      redirect_to user_order_path @order.user, @order
+    end
+  end
+
+  def paid
+    @order = Order.find(params[:id])
+    @order.payment_status = "complete"
     if @order.save
       redirect_to user_order_path @order.user, @order
     end

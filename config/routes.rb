@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/products/inventory' => 'products#inventory'
 
   post '/orders/:id/shipped' => 'orders#shipped', as: 'ship_item'
+  post '/orders/:id/paid' => 'orders#paid', as: 'pay_item'
 
   get '/users/suppliers' => 'users#suppliers', as: 'suppliers'
   get '/users/suppliers/:id' => 'users#suppliers_show', as: 'supplier'
