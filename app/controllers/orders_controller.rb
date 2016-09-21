@@ -4,9 +4,14 @@ class OrdersController < ApplicationController
   def index
     if admin && current_user_id == params[:user_id].to_i
 
-      @orders = Order.all
+      @orders = Order.where.not(user_id: current_user_id)
       @orders = Order.where(shipment_status: params[:shipment_status]) if params[:shipment_status]
-    elsif
+    elsif supplier
+      @orders = Order.all
+      @orders = @orders.select do |order|
+        order.user.role == 3 && order.products.first.user.id == current_user_id
+      end
+    else
       @orders = Order.where(user_id: params[:user_id])
     end
   end
