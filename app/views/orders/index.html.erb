@@ -2,8 +2,10 @@
 <p>Find me in app/views/orders/index.html.erb</p>
 
 <% for order in @orders do %>
-  <%= link_to order.id, user_order_path(params[:user_id], order.id) %>
-  <%= order.created_at.month %>/<%= order.created_at.day %>/<%= order.created_at.year %>
+  <%= link_to order.id, user_order_path(params[:user_id], order.id) %> /
+  <%= order.user.username %> /
+  <%= order.created_at.month %>/<%= order.created_at.day %>/<%= order.created_at.year %> /
+  <%= order.shipment_status %> / <%= order.payment_status %>
 <%# for product in @order.products do %>
   <%#= product.name %> <br>
 <%# end %>

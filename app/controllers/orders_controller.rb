@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   def index
     if admin
       @orders = Order.all
+      @orders = Order.where(shipment_status: params[:shipment_status]) if params[:shipment_status]
     elsif
       @orders = Order.where(user_id: params[:user_id])
     end
