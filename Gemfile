@@ -28,6 +28,10 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'rails_12factor', group: :production
 
+# Bootstrap
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap_form'
+
 # photo uploads:
 gem "paperclip", "~> 5.0.0"
 gem 'aws-sdk', '~> 2'
