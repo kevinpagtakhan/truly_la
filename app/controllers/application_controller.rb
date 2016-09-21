@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
 
   def current_user_id
     if current_user != nil
-      return user = current_user.id
+      return current_user.id
     else
-      return user = 0
+      return 0
     end
   end
 

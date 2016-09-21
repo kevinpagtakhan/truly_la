@@ -2,7 +2,8 @@ class OrdersController < ApplicationController
   before_filter :loggedin
 
   def index
-    if admin
+    if admin && current_user_id == params[:user_id].to_i
+
       @orders = Order.all
       @orders = Order.where(shipment_status: params[:shipment_status]) if params[:shipment_status]
     elsif
