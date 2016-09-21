@@ -21,3 +21,7 @@
 <%= @order.shipping_city %><br>
 <%= @order.shipping_state %><br>
 <%= @order.shipping_zip_code %><br>
+
+<% if current_user_id = 3 && @order.shipment_status != 'complete' %>
+  <%= link_to "Complete Shipment", ship_item_path(@order), method: :post %>
+<% end %>

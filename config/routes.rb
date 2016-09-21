@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get '/products/inventory' => 'products#inventory'
 
+  post '/orders/:id/shipped' => 'orders#shipped', as: 'ship_item'
+
   resources :users do
     resources :orders
   end

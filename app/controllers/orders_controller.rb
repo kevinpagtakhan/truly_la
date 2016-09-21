@@ -45,6 +45,14 @@ class OrdersController < ApplicationController
     end
   end
 
+  def shipped
+    @order = Order.find(params[:id])
+    @order.shipment_status = "complete"
+    if @order.save
+      redirect_to user_order_path @order.user, @order
+    end
+  end
+
   def order_params
     params.require(:order).permit(:shipping_street, :shipping_street_2, :shipping_city, :shipping_state, :shipping_zip_code)
   end
