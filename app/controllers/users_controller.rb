@@ -26,14 +26,22 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if !current_user || admin
+      @user = User.new
+    else
+      redirect_to user_path(current_user)
+    end
   end
 
   def create
     @user = User.new(user_params)
-    @user.role = 1
+    @user.role = 1 unless admin
     if @user.save
-      redirect_to login_path
+      if admin
+        redirect_to login_path
+      else
+        redirect_to users_path
+      end
     else
       redirect_to new_user_path
     end
@@ -70,6 +78,10 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :first_name, :last_name, :password, :password_confirmation, :shipping_street, :shipping_street_2, :shipping_city, :shipping_state, :shipping_zip_code)
+    if admin
+      params.require(:user).permit(:username, :email, :first_name, :last_name, :password, :password_confirmation, :shipping_street, :shipping_street_2, :shipping_city, :shipping_state, :shipping_zip_code, :role)
+    else
+      params.require(:user).permit(:username, :email, :first_name, :last_name, :password, :password_confirmation, :shipping_street, :shipping_street_2, :shipping_city, :shipping_state, :shipping_zip_code)
+    end
   end
 end

@@ -10,5 +10,9 @@
   <%= f.password_field :password %> <br>
   <%= f.label :password_confirmation, "Confirm Password" %>
   <%= f.password_field :password_confirmation %> <br>
+  <% if current_user && current_user.role == 3 %>
+    <%= f.label :role %>
+    <%= f.text_field :role %><br>
+  <% end %>
   <%= f.submit "Sign Up" %>
 <% end %>
