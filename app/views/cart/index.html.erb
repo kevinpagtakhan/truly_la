@@ -5,4 +5,9 @@
   <%= link_to "Remove", delete_item_path(item[0].id), method: :delete %> <%= item[1] %> <%= item[0].name %> <%= item[0].regular_price %> <br>
 <% end %>
 
-<%= link_to "Checkout", new_user_order_path(current_user) %>
+<% if current_user %>
+  <%= link_to "Checkout", new_user_order_path(current_user) %>
+<% else %>
+  <%= link_to "Login", login_path %> or
+  <%= link_to "Sign up", new_user_path %> to checkout
+<% end %>
