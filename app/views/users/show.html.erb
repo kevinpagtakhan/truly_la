@@ -14,19 +14,53 @@
 </div>
 <div class="col-md-8">
   <h3>Orders</h3>
-  <div class="">
-    <% for order in @user.orders do %>
-      <span>Order: <strong><%= order.id %></strong></span> <br>
-      <span>Date: <strong><%= order.created_at.to_date %></strong></span> <br>
-      <span>Payment: <strong><%= order.payment_status.capitalize %></strong></span> <br>
-      <span>Shipment: <strong><%= order.shipment_status.capitalize %></strong></span> <br>
-      <% sum = 0 %>
-      <% for item in order.order_products do %>
-        <% sum += item.selling_price %>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>
+          Order #
+        </th>
+        <th>
+          Date
+        </th>
+        <th>
+          Payment
+        </th>
+        <th>
+          Shipment
+        </th>
+        <th>
+          Total
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for order in @user.orders do %>
+        <tr>
+          <td>
+            <%= link_to order.id, user_order_path(@user, order) %>
+          </td>
+          <td>
+            <%= order.created_at.to_date %>
+          </td>
+          <td>
+            <%= order.payment_status.capitalize %>
+          </td>
+          <td>
+            <%= order.shipment_status.capitalize %>
+          </td>
+          <% sum = 0 %>
+          <% for item in order.order_products do %>
+            <% sum += item.selling_price %>
+          <% end %>
+          <td>
+            <%= number_to_currency(sum) %>
+          </td>
+        </tr>
       <% end %>
-      <span>Total: <strong> <%= number_to_currency(sum) %> </strong></span>
-    <% end %>
-  </div>
+    </tbody>
+  </table>
 </div>
 
 <%# if @user.role == 2 %>
