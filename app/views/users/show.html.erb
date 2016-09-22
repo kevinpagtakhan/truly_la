@@ -9,7 +9,7 @@
 <div class="row">
   <div class="col-md-4">
     <h3>Profile</h3>
-    <span>Name: <strong><%= @user.first_name + " " + @user.last_name %></strong></span> <br>
+    <span>Name: <strong><%= @user.first_name %> <%= @user.last_name %></strong></span> <br>
     <span>Email: <strong><%= @user.email %></strong></span> <br>
     <% if @user.role == 3 %>
       <span>Role: <strong>Store Manager</strong> </span>
