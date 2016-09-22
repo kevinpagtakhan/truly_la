@@ -1,13 +1,40 @@
-<h1>Cart#index</h1>
-<p>Find me in app/views/cart/index.html.erb</p>
+<h2>Shopping Cart</h2>
 
-<% for item in @cart do %>
-  <%= link_to "Remove", delete_item_path(item[0].id), method: :delete %> <%= item[1] %> <%= item[0].name %> <%= item[0].regular_price %> <br>
-<% end %>
+<% if @cart.count > 0 %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Remove</th>
+        <th>Quantity</th>
+        <th>Item</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for item in @cart do %>
+        <tr>
+          <td>
+            <%= link_to delete_item_path(item[0].id), method: :delete do %>
+              <i class="fa fa-remove"></i>
+            <% end %>
+          </td>
+          <td><%= item[1] %></td>
+          <td><%= item[0].name %></td>
+          <td><%= number_to_currency(item[0].regular_price) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<% if current_user %>
-  <%= link_to "Checkout", new_user_order_path(current_user) %>
+  <% if current_user %>
+    <%= link_to "Checkout", new_user_order_path(current_user), class: 'btn btn-primary' %>
+  <% else %>
+    <%= link_to "Login", login_path %> or
+    <%= link_to "Sign up", new_user_path %> to checkout
+  <% end %>
+
 <% else %>
-  <%= link_to "Login", login_path %> or
-  <%= link_to "Sign up", new_user_path %> to checkout
+  <p>
+    You do not have any items in you cart. Start shopping now.
+  </p>
 <% end %>
