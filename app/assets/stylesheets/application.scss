@@ -34,7 +34,7 @@ h1, h2, h3{
 }
 
 .top-header{
-  background-color: #111;
+  background-color: #333;
   color: #fff;
   padding: 10px;
   span{
@@ -63,7 +63,7 @@ h1, h2, h3{
   padding: 30px 10px 250px 10px;
   margin-bottom: 50px;
   .navbar-brand{
-    color: #000;
+    color: #333;
     height: auto;
     h2{
       margin: 0;
@@ -72,7 +72,7 @@ h1, h2, h3{
   }
   .navbar-nav{
     li a{
-      color: #000;
+      color: #333;
       line-height: 60px;
     }
   }
@@ -84,7 +84,7 @@ h1, h2, h3{
 
 .user{
   padding: 40px;
-  border-bottom: #000 solid 3px;
+  border-bottom: #333 solid 3px;
   margin-bottom: 20px;
 }
 
@@ -130,10 +130,16 @@ input[type=file]{
 
 .btn-primary{
   background-color: #FFF;
-  color: #000;
+  color: #333;
   border-radius: 2px;
-  border: 2px solid #000;
+  border: 2px solid #333;
   padding: 10px 20px;
   text-transform: uppercase;
   letter-spacing: 2px;
+}
+
+.btn-primary:hover{
+  background-color: #333;
+  color: #FFF;
+  border: 2px solid #333;
 }
