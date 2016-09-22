@@ -28,8 +28,12 @@ class SessionsController < ApplicationController
 
       session[:cart]["0"] = {}
 
+      flash[:notice] = "Logged in successfully."
+      flash[:type] = "success"
       redirect_to @user
     else
+      flash[:notice] = "Incorrect username and password."
+      flash[:type] = "danger"
       redirect_to login_path
     end
   end
@@ -38,6 +42,8 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     session[:user_role] = nil
     # session[:cart] = nil
+    flash[:notice] = "Logged out successfully."
+    flash[:type] = "success"
     redirect_to login_path
   end
 

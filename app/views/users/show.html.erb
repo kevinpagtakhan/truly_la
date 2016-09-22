@@ -1,74 +1,84 @@
 <h2 class="title"><%= @user.username %> <small><%= link_to "Edit", edit_user_path(@user) %></small></h2>
-<div class="col-md-4">
-  <h3>Profile</h3>
-  <span>Name: <strong><%= @user.first_name + " " + @user.last_name %></strong></span> <br>
-  <span>Email: <strong><%= @user.email %></strong></span> <br>
-  <% if @user.role == 3 %>
-    <span>Role: <strong>Store Manager</strong> </span>
-  <% elsif @user.role == 2 %>
-    <span>Role: <strong>Supplier</strong> </span>
-  <% else %>
-    <span>Role: <strong>Customer</strong> </span>
-  <% end %> <br>
 
-  <hr>
+<% if flash[:notice] %>
+  <div class="alert alert-<%= flash[:type] %>" role="alert">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 
-  <h3>Shipping Details</h3>
-  <span>Address Line 1: <strong><%= @user.shipping_street %></strong></span> <br>
-  <span>Address Line 2: <strong><%= @user.shipping_street_2 %></strong></span> <br>
-  <span>City: <strong><%= @user.shipping_city %></strong></span> <br>
-  <span>State: <strong><%= @user.shipping_state %></strong></span> <br>
-  <span>Zip Code: <strong><%= @user.shipping_zip_code %></strong></span> <br>
-</div>
-<div class="col-md-8">
-  <h3>Orders</h3>
+<div class="row">
+  <div class="col-md-4">
+    <h3>Profile</h3>
+    <span>Name: <strong><%= @user.first_name + " " + @user.last_name %></strong></span> <br>
+    <span>Email: <strong><%= @user.email %></strong></span> <br>
+    <% if @user.role == 3 %>
+      <span>Role: <strong>Store Manager</strong> </span>
+    <% elsif @user.role == 2 %>
+      <span>Role: <strong>Supplier</strong> </span>
+    <% else %>
+      <span>Role: <strong>Customer</strong> </span>
+    <% end %> <br>
 
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>
-          Order #
-        </th>
-        <th>
-          Date
-        </th>
-        <th>
-          Payment
-        </th>
-        <th>
-          Shipment
-        </th>
-        <th>
-          Total
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% for order in @user.orders do %>
+    <hr>
+
+    <h3>Shipping Details</h3>
+    <span>Address Line 1: <strong><%= @user.shipping_street %></strong></span> <br>
+    <span>Address Line 2: <strong><%= @user.shipping_street_2 %></strong></span> <br>
+    <span>City: <strong><%= @user.shipping_city %></strong></span> <br>
+    <span>State: <strong><%= @user.shipping_state %></strong></span> <br>
+    <span>Zip Code: <strong><%= @user.shipping_zip_code %></strong></span> <br>
+  </div>
+  <div class="col-md-8">
+    <h3>Orders</h3>
+
+    <table class="table table-hover">
+      <thead>
         <tr>
-          <td>
-            <%= link_to order.id, user_order_path(@user, order) %>
-          </td>
-          <td>
-            <%= order.created_at.to_date %>
-          </td>
-          <td>
-            <%= order.payment_status.capitalize %>
-          </td>
-          <td>
-            <%= order.shipment_status.capitalize %>
-          </td>
-          <% sum = 0 %>
-          <% for item in order.order_products do %>
-            <% sum += item.selling_price %>
-          <% end %>
-          <td>
-            <%= number_to_currency(sum) %>
-          </td>
+          <th>
+            Order #
+          </th>
+          <th>
+            Date
+          </th>
+          <th>
+            Payment
+          </th>
+          <th>
+            Shipment
+          </th>
+          <th>
+            Total
+          </th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% for order in @user.orders do %>
+          <tr>
+            <td>
+              <%= link_to order.id, user_order_path(@user, order) %>
+            </td>
+            <td>
+              <%= order.created_at.to_date %>
+            </td>
+            <td>
+              <%= order.payment_status.capitalize %>
+            </td>
+            <td>
+              <%= order.shipment_status.capitalize %>
+            </td>
+            <% sum = 0 %>
+            <% for item in order.order_products do %>
+              <% sum += item.selling_price %>
+            <% end %>
+            <td>
+              <%= number_to_currency(sum) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
 </div>
 
 <%# if @user.role == 2 %>
