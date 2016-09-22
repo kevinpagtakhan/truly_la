@@ -29,6 +29,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.role = 1 unless current_user && admin
+    @user.first_name = ""
+    @user.last_name = ""
     if @user.save
       if current_user && admin
         redirect_to users_path
