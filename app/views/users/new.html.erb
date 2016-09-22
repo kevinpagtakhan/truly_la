@@ -4,16 +4,16 @@
 <div class="col-md-6">
   <%= form_for @user do |f| %>
     <%= f.label :username, "Username"%>
-    <%= f.text_field :username, class: 'form-control' %> <br>
+    <%= f.text_field :username, {required: true, class: 'form-control'} %> <br>
     <%= f.label :email, "Email" %>
-    <%= f.text_field :email, class: 'form-control' %> <br>
+    <%= f.text_field :email, {required: true, class: 'form-control'} %> <br>
     <%= f.label :password, "Password" %>
-    <%= f.password_field :password, class: 'form-control' %> <br>
+    <%= f.password_field :password, {required: true, class: 'form-control'} %> <br>
     <%= f.label :password_confirmation, "Confirm Password" %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %> <br>
+    <%= f.password_field :password_confirmation, {required: true, class: 'form-control'} %> <br>
     <% if current_user && current_user.role == 3 %>
       <%= f.label :role %>
-      <%= f.text_field :role, class: 'form-control' %><br>
+      <%= f.select(:role, options_for_select([['Supplier', '2'], ['Admin', '3']]), {}, {required: true, class: 'form-control'}) %> <br>
     <% end %>
     <%= f.submit "Sign Up", class: 'btn btn-primary' %>
   <% end %>
