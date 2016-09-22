@@ -1,31 +1,36 @@
 <%= form_for @product do |f| %>
-  <%= f.label :name%>
-  <%= f.text_field :name %> <br>
-  <%= f.label :sku %>
-  <%= f.text_field :sku %> <br>
-  <%= f.label :description %>
-  <%= f.text_area :description %> <br>
-  <%= f.label :inventory %>
-  <%= f.text_field :inventory %> <br>
+  <div class="col-md-6">
+    <%= f.label :name%>
+    <%= f.text_field :name, class: 'form-control' %> <br>
+    <%= f.label :sku, "SKU" %>
+    <%= f.text_field :sku, class: 'form-control' %> <br>
 
-  <%= f.label :wholesale_price, "Wholesale Price" %>
-  <%= f.text_field :wholesale_price %> <br>
-  <%= f.label :regular_price, "Regular Price" %>
-  <%= f.text_field :regular_price %> <br>
-  <%= f.label :sale_price, "Sale Price" %>
-  <%= f.text_field :sale_price %> <br>
+    <%= f.label :user_id, "Supplier" %>
+    <%= f.text_field :user_id, class: 'form-control' %> <br>
+    <%= f.label :inventory %>
+    <%= f.number_field :inventory, class: 'form-control' %> <br>
 
-  <%= f.label :height %>
-  <%= f.text_field :height %> <br>
-  <%= f.label :width %>
-  <%= f.text_field :width %> <br>
-  <%= f.label :depth %>
-  <%= f.text_field :depth %> <br>
-  <%= f.label :weight %>
-  <%= f.text_field :weight %> <br>
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 5, class: 'form-control' %> <br>
+  </div>
 
-  <%= f.label :user_id, "Supplier" %>
-  <%= f.text_field :user_id %> <br>
+  <div class="col-md-6">
+    <%= f.label :wholesale_price, "Wholesale Price" %>
+    <%= f.text_field :wholesale_price, class: 'form-control' %> <br>
+    <%= f.label :regular_price, "Regular Price" %>
+    <%= f.text_field :regular_price, class: 'form-control' %> <br>
+    <%= f.label :sale_price, "Sale Price" %>
+    <%= f.text_field :sale_price, class: 'form-control' %> <br>
 
-  <%= f.submit  %>
+    <%= f.label :height %>
+    <%= f.text_field :height, class: 'form-control' %> <br>
+    <%= f.label :width %>
+    <%= f.text_field :width, class: 'form-control' %> <br>
+    <%= f.label :depth %>
+    <%= f.text_field :depth, class: 'form-control' %> <br>
+    <%= f.label :weight %>
+    <%= f.text_field :weight, class: 'form-control' %> <br>
+  </div>
+
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>

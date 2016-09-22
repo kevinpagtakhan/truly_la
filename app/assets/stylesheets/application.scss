@@ -94,7 +94,7 @@ h1, h2, h3{
 
 th, td {
   padding: 40px 8px !important;
-  text-align: center;  
+  text-align: center;
 }
 
 footer{
@@ -107,7 +107,8 @@ footer{
 
 input[type=email],
 input[type=text],
-input[type=password]{
+input[type=password],
+input[type=number]{
   padding-top: 25px;
   padding-bottom: 25px;
 }
