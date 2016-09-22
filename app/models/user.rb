@@ -3,5 +3,6 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   has_many :products, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :orders
   has_secure_password
 end

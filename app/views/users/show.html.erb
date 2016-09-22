@@ -1,16 +1,36 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<h4><%= @user.username %></h4>
-<ul>
-  <li><%= @user.first_name %></li>
-  <li><%= @user.last_name %></li>
-  <li><%= @user.email %></li>
-  <li><%= @user.role %></li>
-  <li><%= link_to "Edit", edit_user_path(@user) %></li>
-</ul>
+<h2 class="title"><%= @user.username %></h2>
+<div class="col-md-4">
+  <h3>Profile <small><%= link_to "Edit", edit_user_path(@user) %></small></h3>
+  <span>Name: <strong><%= @user.first_name + " " + @user.last_name %></strong></span> <br>
+  <span>Email: <strong><%= @user.email %></strong></span> <br>
+  <% if @user.role == 3 %>
+    <span>Role: <strong>Store Manager</strong> </span>
+  <% elsif @user.role == 2 %>
+    <span>Role: <strong>Supplier</strong> </span>
+  <% else %>
+    <span>Role: <strong>Customer</strong> </span>
+  <% end %> <br>
 
-<% if @user.role == 2 %>
-  <% for product in @user.products %>
-    <%= product.name %> <br>
-  <% end %>
-<% end %>
+</div>
+<div class="col-md-8">
+  <h3>Orders</h3>
+  <div class="">
+    <% for order in @user.orders do %>
+      <span>Order: <strong><%= order.id %></strong></span> <br>
+      <span>Date: <strong><%= order.created_at.to_date %></strong></span> <br>
+      <span>Payment: <strong><%= order.payment_status.capitalize %></strong></span> <br>
+      <span>Shipment: <strong><%= order.shipment_status.capitalize %></strong></span> <br>
+      <% sum = 0 %>
+      <% for item in order.order_products do %>
+        <% sum += item.selling_price %>
+      <% end %>
+      <span>Total: <strong> <%= number_to_currency(sum) %> </strong></span>
+    <% end %>
+  </div>
+</div>
+
+<%# if @user.role == 2 %>
+  <%# for product in @user.products %>
+    <%#= product.name %> <br>
+  <%# end %>
+<%# end %>
