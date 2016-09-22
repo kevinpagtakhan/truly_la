@@ -3,8 +3,11 @@ class UsersController < ApplicationController
 
   def index
     redirect_to user_path(current_user) unless admin
-
-    @users = User.where(:status => true)
+    if params[:role]
+      @users = User.where(:status => true, :role => params[:role])
+    else
+      @users = User.where(:status => true)
+    end
   end
 
   def suppliers
