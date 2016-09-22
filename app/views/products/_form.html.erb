@@ -5,8 +5,14 @@
     <%= f.label :sku, "SKU" %>
     <%= f.text_field :sku, class: 'form-control' %> <br>
 
-    <%= f.label :user_id, "Supplier" %>
-    <%= f.text_field :user_id, class: 'form-control' %> <br>
+    <% unless @product.user %>
+
+      <%= f.label :user_id, "Supplier" %>
+      <% supplier_options = User.where(role: 2).map { |s| [s.username.capitalize, s.id] } %>
+      <%= f.select(:user_id, options_for_select(supplier_options), {}, {required: true, class: 'form-control'}) %> <br>
+
+    <% end %>
+
     <%= f.label :inventory %>
     <%= f.number_field :inventory, class: 'form-control' %> <br>
 
