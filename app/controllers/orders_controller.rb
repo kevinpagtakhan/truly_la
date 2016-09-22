@@ -64,8 +64,12 @@ class OrdersController < ApplicationController
 
       if @order.save
         session[:cart][current_user_id.to_s] = {}
+        flash[:notice] = "Thank you for shopping! We have successfully received your order."
+        flash[:type] = "success"
         redirect_to user_order_path(current_user, @order)
       else
+        flash[:notice] = "Oops! Something went wrong. Please try again."
+        flash[:type] = "danger"
         redirect_to cart_path
       end
     else
@@ -96,6 +100,8 @@ class OrdersController < ApplicationController
         end
       end
       session[:cart][current_user_id.to_s] = {}
+      flash[:notice] = "Your order has been sent to your supplier."
+      flash[:type] = "success"
       redirect_to user_orders_path(current_user)
     end
   end

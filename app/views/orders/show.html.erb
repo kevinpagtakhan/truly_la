@@ -1,4 +1,13 @@
 <h2 class="title">Order #<%= @order.id %> <br></h2>
+
+<div class="row">
+  <% if flash[:notice] %>
+    <div class="alert alert-<%= flash[:type] %>" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+</div>
+
 <div class="col-md-4">
   <h3>Details</h3>
   <p>Date: <strong><%= @order.created_at.to_date %></strong></p>
