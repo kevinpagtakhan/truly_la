@@ -1,13 +1,12 @@
-<h1>Users#suppliers</h1>
-<p>Find me in app/views/users/suppliers.html.erb</p>
+<h2 class="title">Suppliers</h2>
 
 <% for supplier in @suppliers do %>
-  <h4><%= supplier.username %></h4>
-  <ul>
-    <li><%= supplier.first_name %></li>
-    <li><%= supplier.last_name %></li>
-    <li><%= supplier.email %></li>
-    <li><%= supplier.role %></li>
-    <li> <%= link_to "View", supplier %> </li>
-  </ul>
+  <div class="col-sm-4">
+    <div class="user pad-20 text-center">
+      <h3><%= supplier.username %></h3>
+      <span><%= supplier.first_name %> <%= supplier.last_name %></span><br>
+      <span><%= supplier.email %></span> <br>
+      <span><%= link_to "View", supplier %></span>
+    </div>
+  </div>
 <% end %>
