@@ -102,7 +102,7 @@ class OrdersController < ApplicationController
       session[:cart][current_user_id.to_s] = {}
       flash[:notice] = "Your order has been sent to your supplier."
       flash[:type] = "success"
-      redirect_to user_orders_path(current_user)
+      redirect_to (user_orders_path(current_user) + "?user=admin")
     end
   end
 

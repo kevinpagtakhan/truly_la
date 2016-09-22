@@ -1,4 +1,13 @@
 <h2>Orders</h2>
+
+<div class="row">
+  <% if flash[:notice] %>
+    <div class="alert alert-<%= flash[:type] %>" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+</div>
+
 <% if current_user.role == 3 %>
   <%= link_to "All", user_orders_path(current_user_id) %> /
   <%= link_to "Complete", user_orders_path(current_user_id) + "?shipment_status=complete" %> /
