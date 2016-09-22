@@ -37,6 +37,13 @@ class OrdersController < ApplicationController
   end
 
   def new
+    cart_hash = session[:cart][current_user_id.to_s]
+    @cart = []
+
+    cart_hash.each do |key, value|
+      @cart.push([Product.find(key), value])
+    end
+
     @order = Order.new
   end
 

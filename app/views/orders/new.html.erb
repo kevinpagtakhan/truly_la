@@ -1,16 +1,61 @@
-<h1>Orders#new</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
+<h2>Checkout</h2>
+<div class="col-md-12">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% sum = 0 %>
+      <% for item in @cart do %>
+        <tr>
+          <td><%= item[0].name %> x <%= item[1] %></td>
+          <td><%= number_to_currency(item[0].regular_price * item[1]) %></td>
+          <% sum += item[0].regular_price * item[1] %>
+        </tr>
+      <% end %>
+      <tr>
+        <td>TOTAL</td>
+        <td><%= number_to_currency(sum) %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="col-md-6">
+  <h3>Shipping Address</h3>
+  <%= form_for :order, url: user_orders_path do |f| %>
+    <%= label_tag "Name" %>
+    <%= text_field_tag "", nil, class: 'form-control' %><br>
+    <%= f.label :shipping_street, "Address Line 1" %>
+    <%= f.text_field :shipping_street, class: 'form-control' %><br>
+    <%= f.label :shipping_street_2, "Address Line 2" %>
+    <%= f.text_field :shipping_street_2, class: 'form-control' %><br>
+    <%= f.label :shipping_city, "City" %>
+    <%= f.text_field :shipping_city, class: 'form-control' %><br>
+    <%= f.label :shipping_state, "State" %>
+    <%= f.text_field :shipping_state, class: 'form-control' %><br>
+    <%= f.label :shipping_zip_code, "Zip Code" %>
+    <%= f.text_field :shipping_zip_code, class: 'form-control' %><br>
+    <%= f.submit "Place Order", class: 'btn btn-primary' %>
+  <% end %>
+</div>
+<div class="col-md-6">
+  <h3>Billing Address</h3>
+  <%= form_tag do |f| %>
+    <%= label_tag "Name" %>
+    <%= text_field_tag "", nil, class: 'form-control' %><br>
+    <%= label_tag "Address Line 1" %>
+    <%= text_field_tag "", nil, class: 'form-control' %><br>
+    <%= label_tag "Address Line 2" %>
+    <%= text_field_tag :"", nil, class: 'form-control' %><br>
+    <%= label_tag "City" %>
+    <%= text_field_tag "", nil, class: 'form-control' %><br>
+    <%= label_tag "State" %>
+    <%= text_field_tag "", nil, class: 'form-control' %><br>
+    <%= label_tag "Zip Code" %>
+    <%= text_field_tag "", nil, class: 'form-control' %><br>
+  <% end %>
 
-<%= form_for :order, url: user_orders_path do |f| %>
-  <%= f.label :shipping_street %>
-  <%= f.text_field :shipping_street %><br>
-  <%= f.label :shipping_street_2 %>
-  <%= f.text_field :shipping_street_2 %><br>
-  <%= f.label :shipping_city %>
-  <%= f.text_field :shipping_city %><br>
-  <%= f.label :shipping_state %>
-  <%= f.text_field :shipping_state %><br>
-  <%= f.label :shipping_zip_code %>
-  <%= f.text_field :shipping_zip_code %><br>
-  <%= f.submit "Order" %>
-<% end %>
+</div>
