@@ -1,6 +1,6 @@
-<h2 class="title"><%= @user.username %></h2>
+<h2 class="title"><%= @user.username %> <small><%= link_to "Edit", edit_user_path(@user) %></small></h2>
 <div class="col-md-4">
-  <h3>Profile <small><%= link_to "Edit", edit_user_path(@user) %></small></h3>
+  <h3>Profile</h3>
   <span>Name: <strong><%= @user.first_name + " " + @user.last_name %></strong></span> <br>
   <span>Email: <strong><%= @user.email %></strong></span> <br>
   <% if @user.role == 3 %>
@@ -11,6 +11,14 @@
     <span>Role: <strong>Customer</strong> </span>
   <% end %> <br>
 
+  <hr>
+
+  <h3>Shipping Details</h3>
+  <span>Address Line 1: <strong><%= @user.shipping_street %></strong></span> <br>
+  <span>Address Line 2: <strong><%= @user.shipping_street_2 %></strong></span> <br>
+  <span>City: <strong><%= @user.shipping_city %></strong></span> <br>
+  <span>State: <strong><%= @user.shipping_state %></strong></span> <br>
+  <span>Zip Code: <strong><%= @user.shipping_zip_code %></strong></span> <br>
 </div>
 <div class="col-md-8">
   <h3>Orders</h3>
