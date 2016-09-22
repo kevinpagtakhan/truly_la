@@ -33,11 +33,14 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
+            <li><%= link_to "Home", "#"%></li>
+            <li><%= link_to "About", "#"%></li>
             <% if current_user && current_user.role = 3 %>
             <li><%= link_to "Users", users_path %></li>
+            <% end %>
             <li> <%= link_to "Products", products_path %> </li>
             <li> <%= link_to "My Orders", user_orders_path(current_user) %> </li>
-            <% end %>
+            <li><%= link_to "Contact", "#"%></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
