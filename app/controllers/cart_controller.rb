@@ -17,6 +17,9 @@ class CartController < ApplicationController
     session[:cart][user.to_s][params[:id].to_s] = 0 unless session[:cart][user.to_s][params[:id].to_s]
     session[:cart][user.to_s][params[:id].to_s] += 1
 
+    flash[:notice] = Product.find(params[:id]).name + " was added to your cart."
+    flash[:type] = "info"
+
     redirect_to :back
   end
 

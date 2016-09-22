@@ -1,5 +1,11 @@
 <h2 class="title">Products</h2>
 
+<% if flash[:notice] %>
+  <div class="alert alert-<%= flash[:type] %>" role="alert">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
 <% for product in @products do %>
 <div class="col-sm-4">
   <div class="user pad-20 text-center">
