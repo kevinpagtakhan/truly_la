@@ -1,6 +1,22 @@
-<h1>Products#inventory</h1>
-<p>Find me in app/views/products/inventory.html.erb</p>
+<h2>Inventory</h2>
 
-<% for product in @products do %>
-  <%= product.name %> <%= product.inventory %><br>
-<% end %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>SKU</th>
+      <th>Item</th>
+      <th>Supplier</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for product in @products do %>
+    <tr class=" <%= "warning" if product.inventory < 20 %> ">
+      <td><%= link_to product.sku, product_path(product) %></td>
+      <td><%= product.name %></td>
+      <td><%= link_to product.user.username, user_path(product.user) %><br></td>
+      <td><%= product.inventory %><br></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
