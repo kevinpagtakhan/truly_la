@@ -7,7 +7,7 @@
       <span> <i class="fa fa-envelope"></i> Newsletter </span>
     </div>
     <div class="col-sm-6 text-right">
-      <span> My Account </span> |
+      <span> Hello, <%= current_user.username.upcase if current_user %> </span> |
       <span> Wishlist </span> |
       <span>
         <i class="fa fa-facebook"></i>
