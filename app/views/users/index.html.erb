@@ -1,5 +1,13 @@
 <h2 class="title">Users</h2>
 
+<div class="col-md-12">
+  <%= link_to "Managers", users_path + "?role=1" %> /
+  <%= link_to "Suppliers", users_path + "?role=2" %> /
+  <%= link_to "Customers", users_path + "?role=1" %>
+</div>
+
+<hr>
+
 <% for user in @users do %>
   <div class="col-sm-4">
     <div class="user pad-20 text-center">
