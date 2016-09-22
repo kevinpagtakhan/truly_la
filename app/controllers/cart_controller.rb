@@ -28,6 +28,8 @@ class CartController < ApplicationController
 
     session[:cart][user.to_s].delete(params[:id].to_s)
 
+    flash[:notice] = Product.find(params[:id]).name + " was deleted from your cart."
+    flash[:type] = "warning"
     redirect_to cart_path
   end
 

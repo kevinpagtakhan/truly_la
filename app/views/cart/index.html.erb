@@ -1,5 +1,11 @@
 <h2>Shopping Cart</h2>
 
+<% if flash[:notice] %>
+  <div class="alert alert-<%= flash[:type] %>" role="alert">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
 <% if @cart.count > 0 %>
   <table class="table table-hover">
     <thead>
