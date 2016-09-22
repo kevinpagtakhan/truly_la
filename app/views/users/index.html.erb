@@ -1,15 +1,20 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h2 class="title">Users</h2>
 
-<h2>Users</h2>
-
-  <% for user in @users do %>
-    <h4><%= user.username %></h4>
-    <ul>
-      <li><%= user.first_name %></li>
-      <li><%= user.last_name %></li>
-      <li><%= user.email %></li>
-      <li><%= user.role %></li>
-      <li> <%= link_to "View", user %> / <%= link_to "Edit", edit_user_path(user) %> </li>
-    </ul>
-  <% end %>
+<% for user in @users do %>
+  <div class="col-sm-4">
+    <div class="user pad-20 text-center">
+      <h3><%= user.username %></h3>
+      <% if user.role == 3 %>
+        <span>Store Manager</span>
+      <% elsif user.role == 2 %>
+        <span>Supplier</span>
+      <% else %>
+        <span>Customer</span>
+      <% end %> <br />
+      <span><%= user.first_name %> <%= user.last_name %></span><br>
+      <span><%= user.email %></span> <br>
+      <span><%= link_to "View", user %></span> /
+      <span><%= link_to "Edit", edit_user_path(user) %></span>
+    </div>
+  </div>
+<% end %>
