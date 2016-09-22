@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+    redirect_to products_path unless admin
     @product = Product.new
   end
 
@@ -27,6 +28,7 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    redirect_to product_path(@product) unless admin
   end
 
   def update
