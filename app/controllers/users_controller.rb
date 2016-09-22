@@ -33,11 +33,17 @@ class UsersController < ApplicationController
     @user.last_name = ""
     if @user.save
       if current_user && admin
+        flash[:notice] = "You have successfully added " + @user.username + "."
+        flash[:type] = "info"
         redirect_to users_path
       else
+        flash[:notice] = "You have successfully signed up. Login now to start shopping!"
+        flash[:type] = "success"
         redirect_to login_path
       end
     else
+      flash[:notice] = "Oops! Something went wrong. Please try again."
+      flash[:type] = "warning"
       redirect_to new_user_path
     end
   end

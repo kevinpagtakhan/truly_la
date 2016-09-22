@@ -1,5 +1,13 @@
 <h2 class="title">Users</h2>
 
+<div class="row">
+  <% if flash[:notice] %>
+    <div class="alert alert-<%= flash[:type] %>" role="alert">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+</div>
+
 <div class="col-md-12">
   <%= link_to "New User", new_user_path %> /
   <%= link_to "Managers", users_path + "?role=1" %> /
