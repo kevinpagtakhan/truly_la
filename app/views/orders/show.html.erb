@@ -1,31 +1,49 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<h2 class="title">Order #<%= @order.id %> <br></h2>
+<div class="col-md-4">
+  <h3>Details</h3>
+  <p>Date: <strong><%= @order.created_at.to_date %></strong></p>
+  <p> Payment status: <strong><%= @order.payment_status.capitalize %></strong><br>
+    Shipping status: <strong><%= @order.shipment_status.capitalize %></strong> </p>
 
-<h2>Order #<%= @order.id %> <br></h2>
-<%= time_ago_in_words(@order.created_at) %> ago <br>
-<p> Payment status: <%= @order.payment_status %> </p>
-<p> Shipping status: <%= @order.shipment_status %> </p>
+  <h3>Shipping Address</h3>
 
-<h2>Products</h2>
-<% for op in @order_products do %>
-  <%= op.quantity %>
-  <%= op.product.name %>
-  <%= op.selling_price %> <br>
-<% end %>
+  <p><%= @order.user.first_name + " " + @order.user.last_name %></p>
+  <p>
+    <%= @order.shipping_street %><br>
+    <%= @order.shipping_street_2 %><br>
+    <%= @order.shipping_city %><br>
+    <%= @order.shipping_state %><br>
+    <%= @order.shipping_zip_code %><br>
+  </p>
+</div>
+<div class="col-md-8">
+  <h3>Products</h3>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Qty</th>
+        <th>Item</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for op in @order_products do %>
+        <tr>
+          <td><%= op.quantity %></td>
+          <td><%= op.product.name %></td>
+          <td><%= number_to_currency(op.selling_price) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<h2>Shipping Address</h2>
 
-<%= @order.user.username %><br>
-<%= @order.shipping_street %><br>
-<%= @order.shipping_street_2 %><br>
-<%= @order.shipping_city %><br>
-<%= @order.shipping_state %><br>
-<%= @order.shipping_zip_code %><br>
 
 <% if current_user.role > 1 && ((@order.user.role != 3 )^ (@order.products.first.user == current_user)) && @order.shipment_status == 'pending' %>
-  <%= link_to "Complete Shipment", ship_item_path(@order), method: :post %>
+  <%= link_to "Complete Shipment", ship_item_path(@order), method: :post, class: 'btn btn-primary' %>
 <% end %>
 
 <% if current_user.role == 3 && @order.payment_status == 'pending' && @order.shipment_status == 'complete'%>
-  <%= link_to "Complete Payment", pay_item_path(@order), method: :post %>
+  <%= link_to "Complete Payment", pay_item_path(@order), method: :post, class: 'btn btn-primary' %>
 <% end %>
