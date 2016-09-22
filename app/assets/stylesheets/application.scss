@@ -84,7 +84,7 @@ h1, h2, h3{
 
 .user{
   padding: 40px;
-  border: #e2e2e2 solid 1px;
+  border-bottom: #000 solid 3px;
   margin-bottom: 20px;
 }
 
@@ -126,4 +126,14 @@ input[type=file]{
 
 .product-image{
   width: 100%;
+}
+
+.btn-primary{
+  background-color: #FFF;
+  color: #000;
+  border-radius: 2px;
+  border: 2px solid #000;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
