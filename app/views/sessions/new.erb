@@ -1,10 +1,16 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<h2 class="title text-center">Login</h2>
 
-<%= form_for :session, :url => login_path do |f| %>
-  <%= f.label :username, "Username" %>
-  <%= f.text_field :username %><br>
-  <%= f.label :password, "Password" %>
-  <%= f.password_field :password %><br>
-  <%= f.submit "Login" %>
-<% end %>
+<div class="col-md-3"></div>
+
+<div class="col-md-6">
+  <%= form_for :session, :url => login_path do |f| %>
+    <%= f.label :username, "Username" %>
+    <%= f.text_field :username, class: 'form-control' %><br>
+    <%= f.label :password, "Password" %>
+    <%= f.password_field :password, class: 'form-control' %><br />
+    <small> Don't have an account? Register <%= link_to "here", new_user_path %>.</small> <br /><br />
+    <%= f.submit "Login", class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
+<div class="col-md-3"></div>
