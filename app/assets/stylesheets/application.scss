@@ -103,3 +103,14 @@ footer{
   background-image: url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/noisy_net.png');
   color: #fff;
 }
+
+input[type=email],
+input[type=text],
+input[type=password]{
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+select{
+  height: 50px !important;
+}
