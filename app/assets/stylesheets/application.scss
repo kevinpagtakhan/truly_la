@@ -116,3 +116,14 @@ input[type=number]{
 select{
   height: 50px !important;
 }
+
+input[type=file]{
+  padding: 20px;
+  border: 1px solid #ccc;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.product-image{
+  width: 100%;
+}
