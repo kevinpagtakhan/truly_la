@@ -30,7 +30,12 @@ class SessionsController < ApplicationController
 
       flash[:notice] = "Logged in successfully."
       flash[:type] = "success"
-      redirect_to @user
+
+      if @user.first_name.length > 0 && @user.last_name.length > 0
+        redirect_to @user
+      else
+        redirect_to edit_user_path(@user)
+      end
     else
       flash[:notice] = "Incorrect username and password."
       flash[:type] = "danger"
