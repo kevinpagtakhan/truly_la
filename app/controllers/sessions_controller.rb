@@ -34,6 +34,7 @@ class SessionsController < ApplicationController
       if @user.first_name.length > 0 && @user.last_name.length > 0
         redirect_to @user
       else
+        flash[:notice] += " Please setup your profile."
         redirect_to edit_user_path(@user)
       end
     else
