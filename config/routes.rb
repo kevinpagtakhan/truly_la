@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post '/cart/:id' => 'cart#add_item', as: 'add_item'
   delete '/cart/:id' => 'cart#delete_item', as: 'delete_item'
 
-  get '/products/inventory' => 'products#inventory'
+  get '/products/inventory' => 'products#inventory', as: 'inventory'
 
   post '/orders/:id/shipped' => 'orders#shipped', as: 'ship_item'
   post '/orders/:id/paid' => 'orders#paid', as: 'pay_item'

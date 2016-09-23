@@ -6,6 +6,15 @@
   </div>
 <% end %>
 
+<% if current_user && admin %>
+  <div class="col-md-12">
+    <p class="text-center">
+      <%= link_to "New Product", new_product_path %> /
+      <%= link_to "Inventory", inventory_path %>
+    </p>
+  </div>
+<% end %>
+
 <% for product in @products do %>
 <div class="col-sm-4">
   <div class="user pad-20 text-center">
