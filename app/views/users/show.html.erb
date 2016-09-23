@@ -61,7 +61,7 @@
     <% else %>
       <p>No orders yet.</p>
     <% end %>
-
+    <hr>
     <% if @user.role == 2 %>
       <h3>Products</h3>
       <% if @user.products.count > 0 %>
@@ -80,7 +80,7 @@
                 <td><%= link_to product.sku, product_path(product) %></td>
                 <td><%= product.name %></td>
                 <td><%= product.inventory %></td>
-                <td><%= product.regular_price %></td>
+                <td><%= number_to_currency product.regular_price %></td>
               </tr>
             <% end %>
           </tbody>
@@ -93,9 +93,3 @@
   </div>
 
 </div>
-
-<% if @user.role == 2 %>
-  <% for product in @user.products %>
-    <%= product.name %> <br>
-  <% end %>
-<% end %>
