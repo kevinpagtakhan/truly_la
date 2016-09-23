@@ -1,0 +1,28 @@
+<%= link_to products_path do %>
+<%= image_tag 'home.jpg', {class: 'product-image'} %>
+<% end %>
+<div class="space40"></div>
+
+<div class="row call-to-action">
+  <h2 class="text-center">FREE SHIPPING FOR ALL ORDERS!</h2>
+</div>
+
+<div class="space40"></div>
+<h3 class="title text-center"> Best Sellers</h3>
+<div class="row">
+  <% for product in @best_seller do %>
+    <div class="col-md-4">
+      <div class="user pad-20 text-center">
+        <%= link_to product_path(product) do %>
+          <%= image_tag product.photo.url(:medium), class: 'product-image' %>
+          <h4> <%= product.name %> </h4>
+        <% end %>
+        <% if current_user && admin %>
+          <%= link_to "View", product %> / <%= link_to "Edit", edit_product_path(product) %> <br>
+        <% end %>
+        <p> <%= number_to_currency(product.regular_price) %> </p>
+        <%= link_to "Add To Cart", add_item_path(product), method: :post, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+</div>

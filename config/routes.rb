@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  root 'pages#home'
+
+  get 'pages/about'
+
+  get 'pages/contact'
+
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
