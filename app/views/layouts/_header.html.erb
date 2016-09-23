@@ -7,7 +7,7 @@
       <span> <i class="fa fa-envelope"></i> Newsletter </span>
     </div>
     <div class="col-sm-6 text-right">
-      <span> <%= "Hello," + current_user.username.upcase + "|" if current_user %> </span>
+      <span> <%= "Hello, " + current_user.username.upcase if current_user %> </span> |
       <span> Wishlist </span> |
       <span>
         <i class="fa fa-facebook"></i>
@@ -30,12 +30,13 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="/">
-            <%= image_tag 'truly-la.png', {class: 'logo'} %>
+            <%= link_to root_path do %>
+              <%= image_tag 'truly-la.png', {class: 'logo'} %>
+            <% end %>
           </a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Home", "#"%></li>
             <li><%= link_to "About", "#"%></li>
             <% if current_user && current_user.role = 3 %>
             <li><%= link_to "Users", users_path %></li>
