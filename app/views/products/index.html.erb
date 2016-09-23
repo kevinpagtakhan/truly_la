@@ -9,8 +9,10 @@
 <% for product in @products do %>
 <div class="col-sm-4">
   <div class="user pad-20 text-center">
-    <%= image_tag product.photo.url(:medium), class: 'product-image' %>
-    <h4> <%= product.name %> </h4>
+    <%= link_to product_path(product) do %>
+      <%= image_tag product.photo.url(:medium), class: 'product-image' %>
+      <h4> <%= product.name %> </h4>
+    <% end %>
     <% if current_user && admin %>
       <%= link_to "View", product %> / <%= link_to "Edit", edit_product_path(product) %> <br>
     <% end %>
