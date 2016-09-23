@@ -46,7 +46,7 @@ h1, h2, h3{
 }
 
 .navbar-container{
-  background: url('/assets/la-1.jpg');
+  background: url('la-1.jpg');
   background-size: cover;
   background-position: top center;
 }
@@ -181,4 +181,8 @@ a:hover{
 
 input[type=number]{
   text-align: center;
+}
+
+.logo{
+  max-width: 250px;
 }
