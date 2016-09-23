@@ -36,13 +36,20 @@
       </tr>
     </thead>
     <tbody>
+      <% sum = 0 %>
       <% for op in @order_products do %>
         <tr>
           <td><%= op.quantity %></td>
           <td><%= op.product.name %></td>
+          <% sum += op.selling_price %>
           <td><%= number_to_currency(op.selling_price) %></td>
         </tr>
       <% end %>
+      <tr>
+        <td><strong>TOTAL</strong></td>
+        <td></td>
+        <td> <strong><%= number_to_currency(sum) %></strong> </td>
+      </tr>
     </tbody>
   </table>
 </div>
