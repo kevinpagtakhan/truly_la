@@ -17,6 +17,7 @@
       </tr>
     </thead>
     <tbody>
+      <% sum = 0 %>
       <% for item in @cart do %>
         <tr>
           <td>
@@ -26,9 +27,16 @@
           </td>
           <td><%= item[1] %></td>
           <td><%= item[0].name %></td>
+          <% sum += item[0].regular_price %>
           <td><%= number_to_currency(item[0].regular_price) %></td>
         </tr>
       <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td><strong>Total</strong></td>
+        <td><strong><%= number_to_currency(sum) %></strong></td>
+      </tr>
     </tbody>
   </table>
 
