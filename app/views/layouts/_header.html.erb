@@ -60,6 +60,10 @@
                 <% end %>
               </li>
             <% else %>
+              <li><%= link_to cart_path do %>
+                <i class="fa fa-shopping-cart"></i> Cart <%= cart_count.to_s %>
+                <% end %>
+              </li>
               <li><%= link_to new_user_path do %>
                 <i class="fa fa-user-plus"></i> Register
                 <% end %>
