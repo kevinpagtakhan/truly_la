@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   end
 
   def inventory
+    redirect_to products_path unless admin
     @products = Product.where(:status => true)
   end
 

@@ -54,15 +54,17 @@ class OrdersController < ApplicationController
 
       @order.shipment_status = "pending"
       @order.payment_status = "complete"
+      product = Product.new
       session[:cart][current_user_id.to_s].each do |key,value|
         product = Product.find(key.to_i)
         @order.products << product
-
+        product.inventory -= value
         @order.order_products.last.selling_price = product.regular_price
         @order.order_products.last.quantity = value
       end
 
       if @order.save
+        product.save
         session[:cart][current_user_id.to_s] = {}
         flash[:notice] = "Thank you for shopping! We have successfully received your order."
         flash[:type] = "success"
