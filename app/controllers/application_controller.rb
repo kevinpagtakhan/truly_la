@@ -34,6 +34,9 @@ class ApplicationController < ActionController::Base
 
   def cart_count
     sum = 0
+
+    session[:cart] = {} unless session[:cart]
+
     if session[:cart] && session[:cart][current_user_id.to_s]
       cart = session[:cart][current_user_id.to_s]
       cart.each do |key, value|
